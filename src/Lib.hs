@@ -21,4 +21,6 @@ instance (KnownNat k) => Num (Mod k) where
                           | otherwise            = Mod (n + n' - natVal m) m
 
    (Mod n m) * (Mod n' _) = (n * n') `mod` m
-   
+
+   (Mod n m) - (Mod n' _) = (n - n') `mod` m
+

@@ -25,3 +25,8 @@ spec =
     it "multiplies two numbers together" $ do
       (3 `mod` _7 * 2 `mod` _7) `shouldBe` (6 `mod` _7)
       (3 `mod` _5 * 2 `mod` _5) `shouldBe` (1 `mod` _5)
+
+    it "substract two numbers" $ do
+      (3 `mod` _5 - 2 `mod` _5) `shouldBe` (1 `mod` _5)
+      (3 `mod` _5 - 4 `mod` _5) `shouldBe` (4 `mod` _5)
+
