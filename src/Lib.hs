@@ -9,7 +9,9 @@ data Mod (k :: Nat) = Mod Integer (Proxy k)
   deriving (Show, Eq)
 
 mod :: (KnownNat k) => Integer -> Proxy k -> Mod k
-mod n m | n <  natVal m = Mod n m
+mod n m | n < 0         = let k = natVal m
+                          in mod (n+k) m
+        | n <  natVal m = Mod n m
         | n >= natVal m = let k = natVal m
                           in mod (n-k) m
 mod _ _ = undefined
