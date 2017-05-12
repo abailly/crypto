@@ -16,5 +16,7 @@ mod _ _ = undefined
 
 instance (KnownNat k) => Num (Mod k) where
    (Mod n m) + (Mod n' _) | (n + n') <  natVal m = Mod (n + n') m
-                          | (n + n') >= natVal m = Mod (n + n' - natVal m) m
-   _ + _ = undefined 
+                          | otherwise            = Mod (n + n' - natVal m) m
+
+   (Mod n m) * (Mod n' _) = (n * n') `mod` m
+   
