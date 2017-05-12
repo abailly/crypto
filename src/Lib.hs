@@ -1,6 +1,5 @@
-#!/usr/bin/env runhaskell
-
 {-# LANGUAGE ScopedTypeVariables, KindSignatures, DataKinds #-}
+module Lib(Mod, Proxy(..), mod, assert, assertFail) where
 
 import Control.Exception hiding (assert)
 import Prelude hiding (mod)
@@ -27,16 +26,3 @@ assert False = fail "assertion failed"
 assertFail :: a -> IO ()
 assertFail a = (evaluate a >> fail "expected exception") `catch` \ (_ :: SomeException) -> return ()  
 
-main :: IO ()
-main = do
-  let _5 = Proxy :: Proxy 5
-  -- tests canonical form
-  assert $ 12 `mod` _5 == 2 `mod` _5 
-  -- -- tests addition
-  assert     $ (2 `mod` _5 + 1 `mod` _5) == 3 `mod` _5
-  assert     $ (2 `mod` _5 + 4 `mod` _5) == 1 `mod` _5
-  
-  -- Does not compile...
-  -- 2 `mod` (Proxy :: Proxy 3) + 2 `mod` (Proxy :: Proxy 4)
-  -- tests multiplication
- 
