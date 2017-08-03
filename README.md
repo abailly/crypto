@@ -1,6 +1,12 @@
 # crypto
 
+Pre-requisites :
+================
+
+ * stack (on archlinux, ```pacman -S stack```)
+
 ```bash
+stack setup
 stack test
 
 # or with Docker
